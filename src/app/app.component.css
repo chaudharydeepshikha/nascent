@@ -1,0 +1,21 @@
+.p-3 {
+    padding: 3%;
+}
+
+.grey-color {
+    color: grey;
+}
+
+.table-border {
+    border: 1px solid blue !important;
+    border-radius: 5px !important;
+    padding: 0;
+}
+
+.blue {
+    color: blue;
+}
+
+.pointer {
+    cursor: pointer;
+}
