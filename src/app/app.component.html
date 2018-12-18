@@ -21,7 +21,7 @@
 <div class="container-fluid p-3">
   <h4 class="grey-color">Angular 2 QuickStart</h4>
   <button class="btn btn-primary">Current User: Test@Test.com</button><br /><br />
-  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addProduct">Add Product</button><br /><br />
+  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addProduct" (click)="newProduct = {}">Add Product</button><br /><br />
   <input type="text" class="form-control col-md-2" placeholder="Search" name="search" [(ngModel)]="searchKey"
     (ngModelChange)="searchValueChanged()" /><br />
   <div class="col-md-6 table-border">
