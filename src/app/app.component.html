@@ -21,7 +21,7 @@
 <div class="container-fluid p-3">
   <h4 class="grey-color">Angular 2 QuickStart</h4>
   <button class="btn btn-primary">Current User: Test@Test.com</button><br /><br />
-  <button class="btn btn-success" (click)="addProduct()">Add Product</button><br /><br />
+  <button type="button" class="btn btn-success" data-toggle="modal" data-target="#addProduct">Add Product</button><br /><br />
   <input type="text" class="form-control col-md-2" placeholder="Search" name="search" [(ngModel)]="searchKey"
     (ngModelChange)="searchValueChanged()" /><br />
   <div class="col-md-6 table-border">
@@ -39,21 +39,13 @@
       <tbody>
         <tr scope="row" *ngFor="let product of productList;let index = index">
           <td>
-            <button class="btn btn-primary" *ngIf="!product.edit" (click)="editProduct(index)"><i class="fa fa-pencil-square-o"
-                aria-hidden="true"></i></button>
-            <button class="btn btn-success" *ngIf="product.edit" (click)="saveProduct(index)"><i class="fa fa-floppy-o"
-                aria-hidden="true"></i></button>
+            <button type="button" class="btn btn-success" data-toggle="modal" (click)="editProduct(index);" data-target="#editProduct"><i
+                class="fa fa-pencil-square-o" aria-hidden="true"></i></button>
             <button class="btn btn-danger" (click)="deleteProduct(index)"><i class="fa fa-trash-o" aria-hidden="true"></i></button>
           </td>
           <th scope="row">{{index + 1}}</th>
-          <td *ngIf="!product.edit">{{product.productName}}</td>
-          <td *ngIf="product.edit">
-            <input type="text" class="form-control" [(ngModel)]="product.productName" required />
-          </td>
-          <td *ngIf="!product.edit">{{product.productPrice | currency}}</td>
-          <td *ngIf="product.edit">
-            <input type="number" class="form-control" [(ngModel)]="product.productPrice" required />
-          </td>
+          <td>{{product.productName}}</td>
+          <td>{{product.productPrice | currency}}</td>
         </tr>
       </tbody>
     </table>
@@ -61,4 +53,43 @@
   <br><br>
   <hr>
   <p class="grey-color"><i class="fa fa-copyright" aria-hidden="true"></i> 2016 - My ASP.NET Application</p>
+</div>
+<div class="modal fade" id="editProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Edit Product</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label>Product Name</label>
+        <input type="text" class="form-control" [(ngModel)]="newProduct.productName" required />
+        <label>Product Price</label>
+        <input type="number" class="form-control" [(ngModel)]="newProduct.productPrice" required />
+      </div>
+      <button type="button" class="btn btn-light m-3 col-md-2" data-dismiss="modal">Submit</button>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="addProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Add Product</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <label>Product Name</label>
+        <input type="text" class="form-control" [(ngModel)]="newProduct.productName" required />
+        <label>Product Price</label>
+        <input type="number" class="form-control" [(ngModel)]="newProduct.productPrice" required />
+      </div>
+      <button type="button" class="btn btn-light m-3 col-md-2" data-dismiss="modal" (click)="addProduct()
+        ">Submit</button>
+    </div>
+  </div>
 </div>

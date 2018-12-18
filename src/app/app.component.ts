@@ -10,23 +10,21 @@ export class AppComponent implements OnInit {
   productList: any = [
     {
       productName: "Product One",
-      productPrice: "22.50",
-      edit: false
+      productPrice: "22.50"
     },
     {
       productName: "Product Two",
-      productPrice: "15.00",
-      edit: false
+      productPrice: "15.00"
     },
     {
       productName: "Product Three",
-      productPrice: "123.82",
-      edit: false
+      productPrice: "123.82"
     }
   ];
   searchKey: any;
   productListCopy: any;
   order: number = -1;
+  newProduct:any = {};
 
   ngOnInit() {
     this.productListCopy = this.productList;
@@ -34,22 +32,14 @@ export class AppComponent implements OnInit {
 
   addProduct() {
     var obj = {
-      productName: "",
-      productPrice: "",
-      edit: true
+      productName: this.newProduct.productName,
+      productPrice: this.newProduct.productPrice
     }
     this.productList.push(obj);
   }
 
   editProduct(index: number) {
-    for (let product of this.productList) {
-      product.edit = false;
-    }
-    this.productList[index].edit = true;
-  }
-
-  saveProduct(index: number) {
-    this.productList[index].edit = false;
+    this.newProduct = this.productList[index];
   }
 
   deleteProduct(index: number) {
